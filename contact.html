@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Page</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="flex bg-black justify-center items-center mt-[100px] overflow-scroll p-6" >
+    <div class="bg-gray-800  rounded-md max-w-2xl p-16 h-full pb-4 w-full">
+        <div class="flex justify-center items-center"><h1 class="text-white font-bold text-3xl">Contact Us</h1>
+</div>
+        <form class="mt-5" action="submit" id="contactForm">
+            <label for="fullname" class="block font-bold text-white ml-1.5 text-xl" >Full Name</label><input type="text" data-testid="test-contact-name" class=" border-white border-2 rounded-md my-4 text-2xl text-white p-2 w-full input-element" placeholder="Enter full name..." required>
+            <label for="email" class="block text-xl text-white ml-1.5 font-bold">Email</label><input data-testid="test-contact-email" type="email" class=" border-white border-2 rounded-md my-4 text-2xl text-white p-2 w-full input-element" placeholder="Enter email address.." id="email-input" required>
+            <p id="emailError" data-testid="test-contact-error-email"></p>
+            <label for="subject" class="blotext-white p-2 w-fullck text-xl text-white ml-1.5 font-bold">Subject</label><input data-testid="test-contact-subject" type="text" class=" border-white border-2 rounded-md my-4 text-2xl text-white p-2 w-full input-element" placeholder="Enter subject..." required>
+            <label for="message" class="block text-xl text-white ml-1.5 font-bold">Message</label><textarea minlength="10" data-testid="test-contact-message" type="text" class=" border-white border-2 rounded-md my-4 text-2xl text-white p-2 w-full input-element" placeholder="Enter your message..." id="message-input" required></textarea>
+            <p id="messageError"  data-testid="test-contact-error-message"></p>
+            <button class=" block bg-green-500 rounded-xl text-center p-7 w-full font-bold text-white mt-4" data-testid="test-contact-submit" type="submit" id="submit-btn"> Submit</button>
+        </form> 
+        <div id="msgBox" class=" mt-3 text-xl font-bold" data-testid="test-contact-success"></div>
+    </div>
+    <script>
+        const form = document.getElementById("contactForm");
+    const msgBox = document.getElementById("msgBox");
+    const emailInput = document.getElementById("email-input");
+    const messageInput = document.getElementById("message-input");
+    const emailError = document.getElementById("emailError");
+    const messageError = document.getElementById("messageError");
+
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      
+      msgBox.textContent = "";
+      emailError.textContent = "";
+      messageError.textContent = "";
+
+      
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      
+      const emailText = emailInput.value.trim().toLowerCase();
+      const allowedDomains = ["@gmail.com", "@outlook.com", "@yahoo.com"];
+      const isAllowed = allowedDomains.some((domain) => emailText.endsWith(domain));
+
+      if (!isAllowed) {
+        emailError.textContent = "❌ Please enter a valid email (gmail, outlook, or yahoo).";
+        emailError.style.color = "red";
+        return;
+      }
+
+      if(!messageInput.value.length >= 10){
+        messageError.textContent = "❌ Please enter a message with more than 10 characters.";
+        messageError.style.color = "red";
+        return;
+      }
+
+      
+      msgBox.textContent = "✅ Form submitted successfully! We'll get back to you soon.";
+      msgBox.style.color = "lightgreen";
+
+      
+      form.reset();
+    });
+
+       
+    </script>
+</body>
+</html>

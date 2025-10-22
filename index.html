@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        .neon-card{
+            box-shadow:0 0 20px #39ff14;
+        }
+       @keyframes flip {
+        0% {
+          transform: rotateY(0deg);
+        }
+        25% {
+          transform: rotateY(180deg);
+        }
+        50%{
+            transform: rotateY(360deg);
+        }
+        100% {
+          transform: rotateY(360deg);
+        }
+      }
+
+      .flip {
+        animation: flip 6s linear infinite;
+        transform-style: preserve-3d;
+        backface-visibility: hidden;
+      }
+    </style>
+  </head>
+  <body class="flex justify-center items-center bg-black overflow-scroll">
+<div class="flex max-w-lg bg-gray-800 text-white border border-gray-200 dark:bg-gray-800 dark:border-gray-700 mt-[100px] h-full text-center justify-center items-center flex-col p-5 shadow-xl border-none rounded-lg neon-card mb-3" data-testid="test-profile-card">
+    <div class="p-5">
+        <a href="#">
+            <h1 class="mb-2 text-2xl font-extrabold tracking-tight  dark:text-white text-white font-serif" data-testid="test-user-name">OLAWALE OYEKAN</h5>
+        </a>
+        <div class="Time text-2xl my-3 font-bold">
+            Time(in millisecond):
+        </div>
+        <div class="flex justify-center ">
+         <img class="rounded-md text-center w-40 h-40 mt-6 flip" src="profile-pic.jpg" data-testid="test-user-avatar"/></div>
+    </div>
+    <div data-testid="test-user-social-links flex ">
+        <h2 class=" text-2xl font-bold">Social links:</h2>
+        
+            <label>X:</label><a href ="https://x.com/OlawaleOyekan1?t=DjlsbpVUA03ITQzcNrbIWg&s=09" class ="text-blue-500 hover:text-blue-300"><ul>https://x.com/OlawaleOyekan1?t=DjlsbpVUA03ITQzcNrbIWg&s=09</ul></a>
+           <label>Instagram:</label><a href ="https://www.instagram.com/wal_ie24/" class="text-blue-500 hover:text-blue-300"><ul data-testid="test-user-social-instagram" >https://www.instagram.com/wal_ie24/</ul></a>
+           <label>Github:</label><a href ="https://github.com/Olawalito" class="text-blue-500 hover:text-blue-300"><ul data-testid="test-user-social-Github" >https://github.com/Olawalito</ul></a>
+    </div>
+    <div data-testid="test-user-hobbies">
+        <h2 class="text-2xl my-3 font-bold">Hobbies:</h2>
+        <ul>Football</ul>
+        <ul>Chess</ul>
+        <ul>Reading</ul>
+    </div>
+    <div data-testid="test-user-dislikes">
+        <h2 class="text-2xl my-3 font-bold">Dislikes:</h2>
+        <ul>Messy spaces</ul>
+        <ul>Slow internet</ul>
+    </div>
+    <div class="mt-7 space-x-6">
+      <a href="contact.html"><button class="bg-green-500 rounded-md border-amber-300 p-3 border-2 hover:bg-green-700 ring-2">Contact Us</button></a>
+      <a href="About.html"><button class="bg-green-500 rounded-md border-amber-300 p-3 border-2 hover:bg-green-700 ring-2">About Me</button></a>
+    </div>
+</div>
+<script>
+   let timeDiv = document.querySelector('.Time');
+    let currentTime = Date.now();
+    timeDiv.insertAdjacentHTML('beforeend', currentTime)
+</script>
+  </body>
+</html>
+    
